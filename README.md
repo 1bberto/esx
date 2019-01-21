@@ -1,6 +1,7 @@
 # Desafio ESX
 
-Projeto desenvolvido em .net core 2.1
+Projeto desenvolvido em .net core 2.1, todos os acessos a dados foram feitos utilizando Stored Procedures com *Dapper*.
+Construido em camadas e utilizando IoC, autenticacao feita via JWT e mapeamento dos modelos com AutoMapper.
 
 ## O mesmo tem como objetivo ter os seguintes itens:
  
@@ -49,5 +50,13 @@ Projeto desenvolvido em .net core 2.1
 Para executar o projeto incialmente execute todos os scripts que se encontram no caminho [Scritps](https://github.com/1bberto/esx/blob/master/Scritps/DataBase.sql).
 
 Apos realizar a criacao do banco de dados, faca a carga inicial na tabela `tblUsuario`, caso queira pode utilizar o script que se encontra no caminho [Carga](https://github.com/1bberto/esx/blob/master/Scritps/Carga.sql).
+
+Altere o caminho do banco de dados no arquivo `appsettings.json`:
+
+```
+"Configuracoes": {
+    "Connection": "Data Source=[DATABASE];Initial Catalog=dbESX;Persist Security Info=True;Integrated Security=SSPI"
+  }
+```
 
 Ao realizar isso basta executar o projeto utilizando o visual studio.

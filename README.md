@@ -3,6 +3,8 @@
 Projeto desenvolvido em .net core 2.1, todos os acessos a dados foram feitos utilizando Stored Procedures utilizando *Dapper*.
 Construido em camadas e utilizando IoC, autenticacao feita via JWT e mapeamento dos modelos com AutoMapper.
 
+Para acesso na api ser feito de maneira mais facil foi utilizado o Swagger, permitindo que o usuario faca o consumo da api de modo mais rapido e facil.
+
 ## O mesmo tem como objetivo ter os seguintes itens:
  
 **Patrimônio**
@@ -43,7 +45,6 @@ Construido em camadas e utilizando IoC, autenticacao feita via JWT e mapeamento 
 
 *Regras*:
 - Não deve permitir a existência de duas marcas com o mesmo nome.
-
 
 # Instalando projeto
 

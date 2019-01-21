@@ -20,11 +20,17 @@ namespace ESX.Domain.Core.Service
 
         public async Task DeleteAsync(int patrimonioId)
         {
+            var uow = GetRepository().GetUow();
+
+            uow.Begin();
+
             var patrimonio = await base.GetByIdAsync(patrimonioId);
 
             if (patrimonio is null) throw new DomainException("Patrimonio nao encontrado");
 
             await GetRepository().DeleteAsync(patrimonioId);
+
+            uow.Commit();
         }
 
         public override async Task<Patrimonio> GetByIdAsync(object patrimonioId)
@@ -48,6 +54,10 @@ namespace ESX.Domain.Core.Service
 
         public async Task UpdateAsync(object objId, Patrimonio patrimonio)
         {
+            var uow = GetRepository().GetUow();
+
+            uow.Begin();
+
             var item = await base.GetByIdAsync(objId);
 
             if (item is null)
@@ -59,13 +69,21 @@ namespace ESX.Domain.Core.Service
                 throw new DomainException("Marca nao encontrada!");
 
             await GetRepository().UpdateAsync(patrimonio.PatrimonioId, patrimonio);
+
+            uow.Commit();
         }
 
         public async Task<Patrimonio> SaveAsync(Patrimonio patrimonio)
         {
+            var uow = GetRepository().GetUow();
+
+            uow.Begin();
+
             var item = await GetRepository().SaveAsync(patrimonio);
 
             item.Marca = await _marcaRepository.GetByIdAsync(item.MarcaId);
+
+            uow.Commit();
 
             return item;
         }

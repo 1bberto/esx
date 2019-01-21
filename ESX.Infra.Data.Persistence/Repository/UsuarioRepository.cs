@@ -18,7 +18,7 @@ namespace ESX.Infra.Data.Persistence.Repository
             var param = new DynamicParameters();
             param.Add($"@UsuarioId", usuario.UsuarioId);
             param.Add($"@RoleId", role.RoleId);
-            await Uow.GetConnection().ExecuteAsync("EXEC USP_UsuarioRole_INS @UsuarioId, @RoleId", param, Uow.GeTransaction());
+            await Uow.GetConnection().ExecuteAsync("EXEC USP_UsuarioRole_INS @UsuarioId, @RoleId", param, Uow.GetTransaction());
         }
 
         public async Task<Usuario> LoginAsync(Usuario usuario)
@@ -27,7 +27,7 @@ namespace ESX.Infra.Data.Persistence.Repository
             param.Add($"@Login", usuario.Login);
             param.Add($"@Senha", usuario.Senha);
             var data = await Uow.GetConnection().QueryFirstOrDefaultAsync<Usuario>
-                ("EXEC USP_UsuarioLogin @Login, @Senha", param, Uow.GeTransaction());
+                ("EXEC USP_UsuarioLogin @Login, @Senha", param, Uow.GetTransaction());
             return data;
         }
 
@@ -38,7 +38,7 @@ namespace ESX.Infra.Data.Persistence.Repository
             param.Add($"@Senha", usuario.Senha);
             param.Add($"@Nome", usuario.Nome);
             usuario.UsuarioId = await Uow.GetConnection().QueryFirstOrDefaultAsync<string>
-                ("EXEC USP_Usuario_INS @Login, @Senha, @Nome", param, Uow.GeTransaction());
+                ("EXEC USP_Usuario_INS @Login, @Senha, @Nome", param, Uow.GetTransaction());
             return usuario;
         }
 
@@ -47,7 +47,7 @@ namespace ESX.Infra.Data.Persistence.Repository
             var param = new DynamicParameters();
             param.Add($"@UsuarioId", usuarioId);
             var dados = await Uow.GetConnection().QueryAsync<Role>
-                ("EXEC USP_UsuarioRole_SEL @UsuarioId", param, Uow.GeTransaction());
+                ("EXEC USP_UsuarioRole_SEL @UsuarioId", param, Uow.GetTransaction());
             return dados.AsList();
         }
 
@@ -56,7 +56,7 @@ namespace ESX.Infra.Data.Persistence.Repository
             var param = new DynamicParameters();
             param.Add($"@Login", login);
             var dados = await Uow.GetConnection().QueryFirstOrDefaultAsync<int>
-                ("EXEC USP_VerificaUsuarioLogin @Login", param, Uow.GeTransaction());
+                ("EXEC USP_VerificaUsuarioLogin @Login", param, Uow.GetTransaction());
             return dados > 0;
         }
 

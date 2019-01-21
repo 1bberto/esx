@@ -9,7 +9,7 @@ namespace ESX.Domain.Shared.Interfaces
         void Commit();
         void RollBack();
         IDbConnection GetConnection();
-        IDbTransaction GeTransaction();
+        IDbTransaction GetTransaction();
         void Release();
     }
 }

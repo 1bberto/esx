@@ -1,14 +1,34 @@
 ﻿using ESX.Api.Models.ModelView;
 using ESX.Api.ObjectResult;
 using ESX.Domain.Core.Exceptions;
+using ESX.Domain.Shared.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ESX.Api.Filters
 {
     public class ErrorFilter : ExceptionFilterAttribute
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public ErrorFilter(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public override void OnException(ExceptionContext context)
         {
+            var transaction = _unitOfWork.GetTransaction();
+            if (transaction != null)
+            {
+                try
+                {
+                    _unitOfWork.RollBack();
+                }
+                catch
+                {
+                }
+            }
+
             bool coreError = context.Exception is DomainException;
             var mvcController = context.ActionDescriptor.RouteValues["controller"];
             var mvcAction = context.ActionDescriptor.RouteValues["action"];

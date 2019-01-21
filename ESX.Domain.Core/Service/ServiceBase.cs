@@ -22,7 +22,13 @@ namespace ESX.Domain.Core.Service
 
         public virtual async Task DeleteAsync(object objId)
         {
+            var uow = GetRepository().GetUow();
+
+            uow.Begin();
+
             await _repository.DeleteAsync(objId);
+
+            uow.Commit();
         }
 
         public virtual async Task<IList<T>> GetAllAsync()

@@ -21,6 +21,10 @@ namespace ESX.Domain.Core.Service
 
         public async Task AdicionarRoleUsuarioAsync(string usuarioId, Role role)
         {
+            var uow = GetRepository().GetUow();
+
+            uow.Begin();
+
             if (!Guid.TryParse(usuarioId, out Guid usu))
                 throw new DomainException("Codigo de usuario invalido!");
 
@@ -40,16 +44,24 @@ namespace ESX.Domain.Core.Service
                 throw new DomainException("Role ja cadastrada para usuario");
 
             await GetRepository().AdicionarRoleUsuarioAsync(usuario, role);
+
+            uow.Commit();
         }
 
         public async Task<string> AdicionarUsuarioAsync(Usuario usuario)
         {
+            var uow = GetRepository().GetUow();
+
+            uow.Begin();
+
             var usuarioExiste = await GetRepository().VerificarLoginAsync(usuario.Login);
 
             if (usuarioExiste)
                 throw new DomainException("Login ja cadastrado!");
 
             var usuarioNovo = await GetRepository().SaveAsync(usuario);
+
+            uow.Commit();
 
             return usuarioNovo.UsuarioId;
         }

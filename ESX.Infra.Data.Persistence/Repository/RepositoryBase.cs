@@ -59,7 +59,7 @@ namespace ESX.Infra.Data.Persistence.Repository
                 var param = new DynamicParameters();
                 param.Add($"@{GetKeyField()}", objId);
                 var ret = await Uow.GetConnection().QueryFirstOrDefaultAsync<T>(
-                    $"EXEC {SelectProcedure} @{GetKeyField()}", param, Uow.GeTransaction()
+                    $"EXEC {SelectProcedure} @{GetKeyField()}", param, Uow.GetTransaction()
                 );
                 return ret;
             }
@@ -74,7 +74,7 @@ namespace ESX.Infra.Data.Persistence.Repository
             try
             {
                 var ret = await Uow.GetConnection().QueryAsync<T>(
-                    $"EXEC {SelectProcedure}", null, Uow.GeTransaction());
+                    $"EXEC {SelectProcedure}", null, Uow.GetTransaction());
                 return ret.AsList();
             }
             finally
@@ -87,7 +87,7 @@ namespace ESX.Infra.Data.Persistence.Repository
         {
             var param = new DynamicParameters();
             param.Add($"@{GetKeyField()}", objId);
-            await Uow.GetConnection().ExecuteAsync($"EXEC {DeleteProcedure} @{GetKeyField()}", param, Uow.GeTransaction());
+            await Uow.GetConnection().ExecuteAsync($"EXEC {DeleteProcedure} @{GetKeyField()}", param, Uow.GetTransaction());
         }
     }
 }

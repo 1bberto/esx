@@ -16,7 +16,7 @@ namespace ESX.Infra.Data.Persistence.Repository
             var param = new DynamicParameters();
             param.Add($"@Nome", entity.Nome);
             entity.MarcaId = await Uow.GetConnection().QueryFirstOrDefaultAsync<int>(
-                $"EXEC {InsertProcedure} @Nome", param, Uow.GeTransaction()
+                $"EXEC {InsertProcedure} @Nome", param, Uow.GetTransaction()
             );
             return entity;
         }
@@ -27,7 +27,7 @@ namespace ESX.Infra.Data.Persistence.Repository
             param.Add($"@{GetKeyField()}", objId);
             param.Add($"@Nome", entity.Nome);
             await Uow.GetConnection().ExecuteAsync(
-                $"EXEC {UpdateProcedure} @{GetKeyField()}, @Nome", param, Uow.GeTransaction()
+                $"EXEC {UpdateProcedure} @{GetKeyField()}, @Nome", param, Uow.GetTransaction()
             );
         }
 
@@ -37,7 +37,7 @@ namespace ESX.Infra.Data.Persistence.Repository
             param.Add($"@{GetKeyField()}", null);
             param.Add($"@Nome", nome);
             var marca = await Uow.GetConnection().QueryFirstOrDefaultAsync<Marca>(
-                $"EXEC {SelectProcedure} @{GetKeyField()}, @Nome", param, Uow.GeTransaction()
+                $"EXEC {SelectProcedure} @{GetKeyField()}, @Nome", param, Uow.GetTransaction()
             );
             return marca;
         }

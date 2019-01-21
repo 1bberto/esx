@@ -103,7 +103,7 @@ namespace ESX.Infra.Data.Persistence
             return Connection;
         }
 
-        public IDbTransaction GeTransaction()
+        public IDbTransaction GetTransaction()
         {
             return Transaction;
         }

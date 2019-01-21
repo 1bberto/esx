@@ -1,6 +1,6 @@
 # Desafio ESX
 
-Projeto desenvolvido em .net core 2.1, todos os acessos a dados foram feitos utilizando Stored Procedures com *Dapper*.
+Projeto desenvolvido em .net core 2.1, todos os acessos a dados foram feitos utilizando Stored Procedures utilizando *Dapper*.
 Construido em camadas e utilizando IoC, autenticacao feita via JWT e mapeamento dos modelos com AutoMapper.
 
 ## O mesmo tem como objetivo ter os seguintes itens:

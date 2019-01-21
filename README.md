@@ -46,4 +46,8 @@ Projeto desenvolvido em .net core 2.1
 
 # Instalando projeto
 
-Para executar o projeto incialmente execute todos os scripts que se encontram na pasta 
+Para executar o projeto incialmente execute todos os scripts que se encontram no caminho [Scritps](https://github.com/1bberto/esx/blob/master/Scritps/DataBase.sql).
+
+Apos realizar a criacao do banco de dados, faca a carga inicial na tabela `tblUsuario`, caso queira pode utilizar o script que se encontra no caminho [Carga](https://github.com/1bberto/esx/blob/master/Scritps/Carga.sql).
+
+Ao realizar isso basta executar o projeto utilizando o visual studio.

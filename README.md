@@ -59,4 +59,4 @@ Altere o caminho do banco de dados no arquivo `appsettings.json`:
   }
 ```
 
-Ao realizar isso basta executar o projeto utilizando o visual studio.
+Ao realizar isso basta executar o projeto utilizando o visual studio, nao se esqueca de ter a versao do .net core 2.1 instalado em sua maquina, caso nao tenha basta baixar o mesmo neste [link](https://dotnet.microsoft.com/download/dotnet-core/2.1)

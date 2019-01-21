@@ -1,7 +1,7 @@
 # Desafio ESX
 
 Projeto desenvolvido em .net core 2.1, todos os acessos a dados foram feitos utilizando Stored Procedures utilizando *Dapper*.
-Construido em camadas e utilizando IoC, autenticacao feita via JWT e mapeamento dos modelos com AutoMapper.
+Construido utilizando UnitOfWork, IoC, autenticacao via JWT e mapeamento dos modelos com AutoMapper.
 
 Para acesso na api ser feito de maneira mais facil foi utilizado o Swagger, permitindo que o usuario faca o consumo da api de modo mais rapido e facil.
 

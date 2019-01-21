@@ -1,0 +1,39 @@
+﻿using ESX.Api.Models.ModelView;
+using ESX.Api.ObjectResult;
+using ESX.Domain.Core.Exceptions;
+using Microsoft.AspNetCore.Mvc.Filters;
+
+namespace ESX.Api.Filters
+{
+    public class ErrorFilter : ExceptionFilterAttribute
+    {
+        public override void OnException(ExceptionContext context)
+        {
+            bool coreError = context.Exception is DomainException;
+            var mvcController = context.ActionDescriptor.RouteValues["controller"];
+            var mvcAction = context.ActionDescriptor.RouteValues["action"];
+            var errorMessage = $"{context.Exception.Message} {context.Exception.InnerException?.Message}";
+
+            //if(context.ActionDescriptor.)
+            var result = new BaseViewModel<ErroViewModel>
+            {
+                Mensagem = "Erro",
+                Sucesso = false,
+                ObjetoDeRetorno = new ErroViewModel()
+                {
+                    Core = coreError,
+                    Controller = mvcController,
+                    Action = mvcAction,
+                    Mensagem = errorMessage
+                }
+            };
+
+            if (coreError)
+            {
+                context.Result = new ConflictObjectResult(result);
+            }
+            else
+                context.Result = new InternalServerErrorObjectResult(result);
+        }
+    }
+}

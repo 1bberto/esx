@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ESX.Api</name>
+    </assembly>
+    <members>
+        <member name="T:ESX.Api.Controllers.MarcaController">
+            <summary>
+            Controller Responsavel por realizar as operacoes da entidade Marca
+            Usuario deve estar autenticado para acessar
+            </summary>
+        </member>
+        <member name="M:ESX.Api.Controllers.MarcaController.ObterMarcas">
+            <summary>
+            Retorna todas as marcas
+            </summary>
+            <response code="200">Lista com todas as marcas cadastradas</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="404">Caso nenhuma marca for encontrada</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response> 
+        </member>
+        <member name="M:ESX.Api.Controllers.MarcaController.ObterMarcas(System.Int32)">
+            <summary>
+            Retorna marca
+            </summary>
+            <response code="200">Marca</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="404">Caso marca nao for encontrada</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response>
+        </member>
+        <member name="M:ESX.Api.Controllers.MarcaController.DeleteMarca(System.Int32)">
+            <summary>
+            Remove marca
+            Usuario deve ser Administador para executar esta funcionalidade
+            </summary>
+            <response code="200">Ok caso patrimonio seja removido</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="404">Caso patrimonio nao for encontrado</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response>
+        </member>
+        <member name="M:ESX.Api.Controllers.MarcaController.AdicionarMarca(ESX.Api.Models.ViewModel.MarcaViewModel)">
+            <summary>
+            Insere marca, 
+            Usuario deve ser Administador para executar esta funcionalidade
+            </summary>
+            <response code="200">Marca inserida</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response>
+        </member>
+        <member name="M:ESX.Api.Controllers.MarcaController.AdicionarMarca(System.Int32,ESX.Api.Models.ViewModel.MarcaViewModel)">
+            <summary>
+            Atualiza marca
+            Usuario deve ser Administador para executar esta funcionalidade
+            </summary>
+            <response code="200">Ok caso marca seja atualizada</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="404">Caso marca nao for encontrada</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response>
+        </member>
+        <member name="M:ESX.Api.Controllers.MarcaController.ObterPatrimoniosMarca(System.Int32,ESX.Application.Interfaces.IPatrimonioAppService)">
+            <summary>
+            Retorna todos os patrimonios pela marca
+            </summary>
+            <response code="200">Todos os patrimonios que estao cadastrados com a marca</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="404">Caso marca nao for encontrada</response> 
+            <response code="404">Caso nenhum patrimonio nao for encontrado</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response>
+        </member>
+        <member name="T:ESX.Api.Controllers.PatrimonioController">
+            <summary>
+            Controller Responsavel por realizar as operacoes da entidade Patrimonio
+            Usuario deve estar autenticado para acessar
+            </summary>
+        </member>
+        <member name="M:ESX.Api.Controllers.PatrimonioController.ObterPatrimonios">
+            <summary>
+            Retorna todos os patrimonios
+            </summary>
+            <response code="200">Lista com todos os patrimonios cadastrados</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="404">Caso nenhum patrimonio for encontrado</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response> 
+        </member>
+        <member name="M:ESX.Api.Controllers.PatrimonioController.ObterPatrimonios(System.Int32)">
+            <summary>
+            Retorna patrimonio
+            </summary>
+            <response code="200">Patrimonio</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="404">Caso patrimonio nao for encontrado</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response>
+        </member>
+        <member name="M:ESX.Api.Controllers.PatrimonioController.DeletePatrimonio(System.Int32)">
+            <summary>
+            Remove patrimonio
+            Usuario deve ser Administador para executar esta funcionalidade
+            </summary>
+            <response code="200">Ok caso patrimonio seja removido</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="404">Caso patrimonio nao for encontrado</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response>
+        </member>
+        <member name="M:ESX.Api.Controllers.PatrimonioController.AdicionarPatrimonio(ESX.Api.Models.ViewModel.PatrimonioViewModel)">
+            <summary>
+            Insere patrimonio, 
+            Usuario deve ser Administador para executar esta funcionalidade
+            </summary>
+            <response code="200">Patrimonio inserido</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response>
+        </member>
+        <member name="M:ESX.Api.Controllers.PatrimonioController.AdicionarPatrimonio(System.Int32,ESX.Api.Models.ViewModel.PatrimonioViewModel)">
+            <summary>
+            Atualiza patrimonio
+            Usuario deve ser Administador para executar esta funcionalidade
+            </summary>
+            <response code="200">Ok caso patrimonio seja atualizado</response>
+            <response code="401">Caso usuario nao estiver autenticado</response> 
+            <response code="404">Caso patrimonio nao for encontrado</response> 
+            <response code="409">Caso alguma regra for violada</response> 
+            <response code="500">Erro interno desconhecido</response>
+        </member>
+    </members>
+</doc>
